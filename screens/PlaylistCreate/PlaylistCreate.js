@@ -1,10 +1,9 @@
 import React from 'react';
-import {
-  Text, View, TouchableWithoutFeedback, StyleSheet, TextInput, Image
-} from 'react-native';
+import { View, TouchableWithoutFeedback, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+import InputTitle from '../../components/InputTitle';
 import Layout from '../../layout/Layout';
-import icon from '../../assets/images/icon.png';
+import AddBtn from '../../components/AddBtn';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,25 +13,11 @@ const styles = StyleSheet.create({
   },
   titleWrapper: {
     flex: 3,
-    marginTop: 26,
-    alignItems: 'center'
+    marginTop: 26
   },
   buttonWrapper: {
     flex: 7,
     justifyContent: 'center',
-  },
-  playlistTitle: {
-    fontSize: 24,
-    opacity: 0.50
-  },
-  playlistName: {
-    fontSize: 25,
-    fontWeight: 'bold'
-  },
-  icon: {
-    alignSelf: 'center',
-    width: 150,
-    height: 150
   }
 });
 
@@ -55,24 +40,22 @@ export default class PlaylistCreate extends React.Component {
       <Layout>
         <View style={styles.container}>
           <View style={styles.titleWrapper}>
-            <Text style={styles.playlistTitle}>
-              Плейлист:
-            </Text>
-            <TextInput
-              style={styles.playlistName}
+            <InputTitle
+              text="Плейлист:"
               value={playlistName}
-              onChangeText={(name) => { this.setPlaylistName(name); }}
+              setValue={this.setPlaylistName}
+              isEditable
             />
           </View>
-          <TouchableWithoutFeedback onPress={() => navigation.navigate('AddWord')}>
+          <TouchableWithoutFeedback
+            onPress={
+              () => navigation.navigate('AddWord', { currentSound: 'word' })
+            }
+          >
             <View style={styles.buttonWrapper}>
-              <Image
-                source={icon}
-                style={styles.icon}
+              <AddBtn
+                title="Добавьте слово..."
               />
-              <Text style={styles.playlistTitle}>
-                Добавьте слово...
-              </Text>
             </View>
           </TouchableWithoutFeedback>
         </View>

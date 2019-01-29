@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
 export default class AddWord extends React.Component {
   render() {
     const { navigation } = this.props;
+    const { currentSound } = navigation.state.params;
     return (
       <Layout>
         <View style={styles.container}>
@@ -34,7 +35,7 @@ export default class AddWord extends React.Component {
             <RecordWaves />
           </View>
           <TouchableWithoutFeedback
-            onPress={() => navigation.navigate('AddWordDescription')}
+            onPress={() => navigation.navigate('AddWordDescription', { currentSound })}
           >
             <View style={styles.buttonContainer}>
               <StopRecordBtn />
@@ -48,6 +49,11 @@ export default class AddWord extends React.Component {
 
 AddWord.propTypes = {
   navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired
+    navigate: PropTypes.func.isRequired,
+    state: PropTypes.shape({
+      params: PropTypes.shape({
+        currentSound: PropTypes.string.isRequired
+      }).isRequired
+    }).isRequired
   }).isRequired
 };
