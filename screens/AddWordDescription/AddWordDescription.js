@@ -1,12 +1,13 @@
 import React from 'react';
 import {
-  View, TouchableWithoutFeedback, StyleSheet, Text
+  View, TouchableWithoutFeedback, StyleSheet
 } from 'react-native';
 import PropTypes from 'prop-types';
 import InputTitle from '../../components/InputTitle';
 import InputTranslation from '../../components/InputTranslation';
 import Layout from '../../layout/Layout';
 import AddBtn from '../../components/AddBtn';
+import Button from '../../components/Button';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,16 +35,8 @@ const styles = StyleSheet.create({
     width: null,
     resizeMode: 'contain'
   },
-  buttonReady: {
-    color: '#fff',
-    backgroundColor: '#000',
-    fontSize: 22,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    marginLeft: 30,
-    marginRight: 30,
-    paddingTop: 21,
-    paddingBottom: 21
+  readyButton: {
+    display: 'flex'
   }
 });
 
@@ -103,9 +96,12 @@ export default class AddWordDescription extends React.Component {
                     () => navigation.navigate('PlaylistView')
                   }
                 >
-                  <Text style={styles.buttonReady}>
-                    Готово
-                  </Text>
+                  <View style={styles.readyButton}>
+                    <Button
+                      text="Готово"
+                      isDark
+                    />
+                  </View>
                 </TouchableWithoutFeedback>
               </View>
             ) : (
