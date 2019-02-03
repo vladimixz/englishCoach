@@ -23,7 +23,11 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.onix.englishCoach",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.onix.englishCoach"
     }
   }
 }
