@@ -1,17 +1,14 @@
 import React from 'react';
 import {
-  Text, Image, View, StyleSheet
+  Image, View, StyleSheet
 } from 'react-native';
 import PropTypes from 'prop-types';
+import Subtitle from './Subtitle';
 import icon from '../assets/images/icon.png';
 
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center'
-  },
-  playlistTitle: {
-    fontSize: 24,
-    opacity: 0.50
   },
   icon: {
     alignSelf: 'center',
@@ -27,9 +24,7 @@ export default function AddBtn({ title }) {
         source={icon}
         style={styles.icon}
       />
-      <Text style={styles.playlistTitle}>
-        {title}
-      </Text>
+      <Subtitle text={title} />
     </View>
   );
 }

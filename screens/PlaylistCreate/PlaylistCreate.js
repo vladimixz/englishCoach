@@ -65,6 +65,7 @@ export default class PlaylistCreate extends React.Component {
 }
 
 PlaylistCreate.propTypes = {
+
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired
   }).isRequired

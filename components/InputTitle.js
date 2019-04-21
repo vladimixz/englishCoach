@@ -1,17 +1,14 @@
 import React from 'react';
 import {
-  TextInput, Text, View, StyleSheet
+  TextInput, View, StyleSheet
 } from 'react-native';
 import PropTypes from 'prop-types';
+import Subtitle from './Subtitle';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center'
-  },
-  text: {
-    fontSize: 24,
-    opacity: 0.50
   },
   input: {
     fontSize: 25,
@@ -24,9 +21,7 @@ export default function InputTitle({
 }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
-        {text}
-      </Text>
+      <Subtitle text={text} />
       <TextInput
         style={styles.input}
         value={value}
