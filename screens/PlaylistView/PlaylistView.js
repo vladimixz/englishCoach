@@ -72,6 +72,11 @@ export default class PlaylistView extends React.Component {
               text="Tangible"
               description="Осязаемый"
             />
+            <ListItem
+              number={1}
+              text="Tangible"
+              description="Осязаемый"
+            />
           </View>
           <View style={styles.buttonsContainer}>
             <TouchableWithoutFeedback
