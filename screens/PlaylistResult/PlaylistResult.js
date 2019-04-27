@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
 
 export default class PlaylistResult extends React.Component {
   render() {
+    const { navigation } = this.props;
     return (
       <Layout>
         <View style={styles.container}>
@@ -107,7 +108,7 @@ export default class PlaylistResult extends React.Component {
           </View>
           <TouchableWithoutFeedback
             onPress={
-              () => {}
+              () => navigation.navigate('PlaylistsYour')
             }
           >
             <View style={styles.readyButton}>

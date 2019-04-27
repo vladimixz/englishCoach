@@ -7,6 +7,7 @@ import PlaylistCreateScreen from '../screens/PlaylistCreate/PlaylistCreate';
 import PlaylistViewScreen from '../screens/PlaylistView/PlaylistView';
 import PlaylistListenScreen from '../screens/PlaylistListen/PlaylistListen';
 import PlaylistResultScreen from '../screens/PlaylistResult/PlaylistResult';
+import PlaylistsYourScreen from '../screens/PlaylistsYour/PlaylistsYour';
 
 const Home = {
   screen: HomeScreen,
@@ -64,6 +65,14 @@ const PlaylistResult = {
   },
 };
 
+const PlaylistsYour = {
+  screen: PlaylistsYourScreen,
+  headerMode: 'none',
+  navigationOptions: {
+    header: null,
+  },
+};
+
 export default createStackNavigator({
   Home,
   AddWord,
@@ -71,5 +80,6 @@ export default createStackNavigator({
   PlaylistCreate,
   PlaylistView,
   PlaylistListen,
-  PlaylistResult
+  PlaylistResult,
+  PlaylistsYour
 });

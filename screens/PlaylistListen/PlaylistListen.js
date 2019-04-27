@@ -118,9 +118,11 @@ export default class PlaylistListen extends React.Component {
             <View style={styles.timer}>
               <TimerBtn />
             </View>
-            <View style={styles.timeArrow}>
-              <Arrow />
-            </View>
+            <TouchableWithoutFeedback onPress={() => navigation.navigate('PlaylistResult')}>
+              <View style={styles.timeArrow}>
+                <Arrow />
+              </View>
+            </TouchableWithoutFeedback>
           </View>
           <View style={styles.footer}>
             <View style={styles.footerButtons}>
