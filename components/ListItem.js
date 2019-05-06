@@ -6,16 +6,16 @@ import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   item: {
-    flex: 0.33,
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
-    alignItems: 'center'
+    alignItems: 'center',
+    height: 85
   },
   flatItem: {
-    flex: 0.33,
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    height: 85
   },
   itemNumberContainer: {
     width: 56

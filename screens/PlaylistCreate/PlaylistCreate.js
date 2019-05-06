@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, TouchableWithoutFeedback, StyleSheet } from 'react-native';
+import {
+  View, TouchableWithoutFeedback, StyleSheet, AsyncStorage, Alert
+} from 'react-native';
 import PropTypes from 'prop-types';
 import InputTitle from '../../components/InputTitle';
 import Layout from '../../layout/Layout';
@@ -25,17 +27,45 @@ export default class PlaylistCreate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      playlistName: 'Название 1'
+      playlistName: 'Название 1',
+      playlists: {}
     };
+  }
+
+  componentDidMount() {
+    AsyncStorage.getItem('playlists').then((playlists) => {
+      if (playlists) {
+        this.setState({ playlists: JSON.parse(playlists) });
+      }
+    });
   }
 
   setPlaylistName = (playlistName) => {
     this.setState({ playlistName });
   }
 
+  createPlaylist = () => {
+    const { navigation } = this.props;
+    const { playlists, playlistName } = this.state;
+    if (!playlists[playlistName]) {
+      const newPlaylists = {
+        ...playlists,
+        [playlistName]: {
+          date: Date.now(),
+          wordsCount: 0,
+          key: [Date.now(), playlistName].join('_')
+        }
+      };
+      AsyncStorage.setItem('playlists', JSON.stringify(newPlaylists)).then(() => {
+        navigation.navigate('AddWord', { currentSound: 'word' });
+      });
+    } else {
+      Alert.alert('Плейлист с таким именем уже существует.');
+    }
+  }
+
   render() {
     const { playlistName } = this.state;
-    const { navigation } = this.props;
     return (
       <Layout>
         <View style={styles.container}>
@@ -48,9 +78,7 @@ export default class PlaylistCreate extends React.Component {
             />
           </View>
           <TouchableWithoutFeedback
-            onPress={
-              () => navigation.navigate('AddWord', { currentSound: 'word' })
-            }
+            onPress={this.createPlaylist}
           >
             <View style={styles.buttonWrapper}>
               <AddBtn

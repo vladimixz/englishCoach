@@ -1,11 +1,11 @@
 import React from 'react';
 import {
-  View, StyleSheet, TouchableWithoutFeedback, Text, Image
+  View, StyleSheet, TouchableWithoutFeedback, Text, Image, AsyncStorage
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Layout from '../../layout/Layout';
 import InputTitle from '../../components/InputTitle';
-import ListItem from '../../components/ListItem';
+import ListItems from '../../components/ListItems';
 import Button from '../../components/Button';
 import shape from '../../assets/images/shape.png';
 import smile from '../../assets/images/smile.png';
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     flex: 0.3
   },
   wordsContainer: {
-    flex: 0.42
+    flex: 0.42,
   },
   listenPlaylistContainer: {
     flex: 0.13
@@ -65,8 +65,24 @@ const styles = StyleSheet.create({
 });
 
 export default class PlaylistResult extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      playlists: {}
+    };
+  }
+
+  componentDidMount() {
+    AsyncStorage.getItem('playlists').then((playlists) => {
+      if (playlists) {
+        this.setState({ playlists: JSON.parse(playlists) });
+      }
+    });
+  }
+
   render() {
     const { navigation } = this.props;
+    const { playlists } = this.state;
     return (
       <Layout>
         <View style={styles.container}>
@@ -90,21 +106,7 @@ export default class PlaylistResult extends React.Component {
             </View>
           </TouchableWithoutFeedback>
           <View style={styles.wordsContainer}>
-            <ListItem
-              number={1}
-              text="Новые слова"
-              description="25.04.2018"
-              tooltip="10 слов"
-              listTitle="Другие плейлисты:"
-              hideBorder
-            />
-            <ListItem
-              number={2}
-              text="Про природу"
-              description="24.04.2018"
-              tooltip="4 слова"
-              hideBorder
-            />
+            <ListItems playlists={playlists} />
           </View>
           <TouchableWithoutFeedback
             onPress={

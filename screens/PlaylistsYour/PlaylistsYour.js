@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  View, StyleSheet, Text
+  View, StyleSheet, Text, AsyncStorage
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Layout from '../../layout/Layout';
-import ListItem from '../../components/ListItem';
+import ListItems from '../../components/ListItems';
 
 const styles = StyleSheet.create({
   container: {
@@ -27,7 +27,23 @@ const styles = StyleSheet.create({
 });
 
 export default class PlaylistsYour extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      playlists: {}
+    };
+  }
+
+  componentDidMount() {
+    AsyncStorage.getItem('playlists').then((playlists) => {
+      if (playlists) {
+        this.setState({ playlists: JSON.parse(playlists) });
+      }
+    });
+  }
+
   render() {
+    const { playlists } = this.state;
     return (
       <Layout>
         <View style={styles.container}>
@@ -35,18 +51,7 @@ export default class PlaylistsYour extends React.Component {
             <Text style={styles.title}>Ваши плейлисты</Text>
           </View>
           <View style={styles.wordsContainer}>
-            <ListItem
-              number={1}
-              text="Новые слова"
-              description="25.04.2018"
-              tooltip="10 слов"
-            />
-            <ListItem
-              number={2}
-              text="Про природу"
-              description="24.04.2018"
-              tooltip="4 слова"
-            />
+            <ListItems playlists={playlists} />
           </View>
         </View>
       </Layout>

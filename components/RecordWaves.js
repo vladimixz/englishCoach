@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   ripples: {
     flex: 0.48,
     height: 84,
-    resizeMode: 'center',
+    resizeMode: 'contain',
     alignSelf: 'center',
     marginRight: 5,
   },

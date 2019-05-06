@@ -24,10 +24,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function Arrow({ leftDirection }) {
+export default function Arrow({ leftDirection, action }) {
   return (
     <TouchableWithoutFeedback
-      onPress={() => {}}
+      onPress={action}
     >
       <View style={styles.container}>
         <Image
@@ -40,9 +40,11 @@ export default function Arrow({ leftDirection }) {
 }
 
 Arrow.propTypes = {
-  leftDirection: PropTypes.bool
+  leftDirection: PropTypes.bool,
+  action: PropTypes.func
 };
 
 Arrow.defaultProps = {
-  leftDirection: false
+  leftDirection: false,
+  action: () => {}
 };
